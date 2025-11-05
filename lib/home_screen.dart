@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             Text(
               "Delicious meals deliverd fresh to your\ndoorstep-fast,easy,and satisfing",
               style: TextStyle(
@@ -62,17 +62,31 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height:20),
-            Row(mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                FloatingActionButton(backgroundColor: Colors.orange,onPressed: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondPage()));
-                },
-                  child:Icon(
-                  Icons.arrow_right_alt_outlined,color: Colors.white,))
+                GestureDetector( onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SecondPage()),
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
