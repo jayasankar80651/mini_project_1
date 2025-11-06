@@ -78,7 +78,7 @@ class Database {
       "price":"\$50.0"
     },
     {
-      "image":"assets/images/undefined (1).jpeg",
+      "image":"assets/images/pizzza.jpg",
       "name":"kebab pizza",
       "rating":"6.5",
       "subname":"25min",

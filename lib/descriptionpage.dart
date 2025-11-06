@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DescriptionPage extends StatelessWidget {
-  DescriptionPage({super.key});
+  final String image;
+  final String name;
+  final String price;
+
+  DescriptionPage({super.key,required this.image,required this.name,required this .price});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,9 +15,14 @@ class DescriptionPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.arrow_back, size: 25, color: Colors.black),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.arrow_back, size: 25, color: Colors.black),
+                  ),
                 ),
                 SizedBox(width: 100),
                 Text(
@@ -37,7 +46,7 @@ class DescriptionPage extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/pizza2.jpeg"),
+                  image: AssetImage(image),
                 ),
               ),
             ),
@@ -72,11 +81,12 @@ class DescriptionPage extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: 25),
 
             Row(
               children: [
                 Text(
-                  "Chic Pizza",
+                  name,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25,
@@ -85,7 +95,7 @@ class DescriptionPage extends StatelessWidget {
                 ),
                 Spacer(),
                 Text(
-                  "\$7.99",
+                  price,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25,
@@ -101,7 +111,14 @@ class DescriptionPage extends StatelessWidget {
                   color: const Color.fromARGB(255, 234, 213, 23),
                   size: 25,
                 ),
-                Text("4.5"),
+                Text(
+                  "4.5(250 kacl)",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 25),
@@ -121,7 +138,7 @@ class DescriptionPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 15),
                 Container(
                   height: 80,
                   width: 80,
@@ -136,7 +153,7 @@ class DescriptionPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 15),
                 Container(
                   height: 80,
                   width: 80,
@@ -151,7 +168,7 @@ class DescriptionPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 15),
                 Container(
                   height: 80,
                   width: 80,
@@ -168,7 +185,7 @@ class DescriptionPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height:15),
+            SizedBox(height: 15),
             Row(
               children: [
                 Text(
@@ -181,7 +198,62 @@ class DescriptionPage extends StatelessWidget {
                 ),
               ],
             ),
-            Text("Chicken pizza is a delicious combination of pizza crust topped with sauce,cheese,and various prepration of chichen,along with a medely of complementary vegetables and seasoning ")
+            Text(
+              "Chicken pizza is a delicious combination of pizza crust topped with sauce, cheese, and various prepration of chichen, along with a medely of complementary vegetables and seasoning ",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 50),
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: const Color.fromARGB(255, 210, 207, 207),
+                  radius: 25,
+                  child: Center(
+                    child: Text(
+                      "-",
+                      style: TextStyle(color: Colors.black, fontSize: 30),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                CircleAvatar(
+                  backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                  radius: 25,
+                  child: Center(
+                    child: Text(
+                      "+",
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 246, 246),
+                        fontSize: 22,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  height: 45,
+                  width: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.orange,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Add to Cart",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

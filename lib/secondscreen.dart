@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_store_app/Database.dart';
+import 'package:pizza_store_app/descriptionpage.dart';
 
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
@@ -88,30 +89,39 @@ class SecondPage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: Database.Pizzadetails.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    height: 50,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Database.Pizzadetails[index]["container_color"],
-                      image: DecorationImage(
-                        image: AssetImage(
-                          Database.Pizzadetails[index]["image"],
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          Database.Pizzadetails[index]["name"],
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DescriptionPage(
+                        image: Database.pizza[index]["image"],
+                        name: Database.pizza[index]["name"],
+                        price: Database.pizza[index]["price"],
+                      )));
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Database.Pizzadetails[index]["container_color"],
+                        image: DecorationImage(
+                          image: AssetImage(
+                            Database.Pizzadetails[index]["image"],
                           ),
                         ),
-                      ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            Database.Pizzadetails[index]["name"],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -147,130 +157,139 @@ class SecondPage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: Database.pizza.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    height: 250,
-                    width: 180,
-                    margin: EdgeInsets.only(right: 16),
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 5,
-                          spreadRadius: 2,
-                          offset: Offset(3, 2),
-                        ),
-                      ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  Database.pizza[index]["image"],
+                  return GestureDetector(
+                     onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DescriptionPage(
+                        image: Database.pizza[index]["image"],
+                        name: Database.pizza[index]["name"],
+                        price: Database.pizza[index]["price"],
+                      )));
+                    },
+                    child: Container(
+                      height: 250,
+                      width: 180,
+                      margin: EdgeInsets.only(right: 16),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 5,
+                            spreadRadius: 2,
+                            offset: Offset(3, 2),
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    Database.pizza[index]["image"],
+                                  ),
+                                  fit: BoxFit.cover,
                                 ),
-                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 5,
-                            bottom: 5,
-                            left: 5,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                Database.pizza[index]["name"],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              SizedBox(width: 25),
-                              Icon(Icons.star, color: Colors.yellow, size: 18),
-                              Text(
-                                Database.pizza[index]["rating"],
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                Database.pizza[index]["subname"],
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 10,
-                                bottom: 10,
-                              ),
-                              child: Text(
-                                Database.pizza[index]["price"],
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 5,
+                              bottom: 5,
+                              left: 5,
                             ),
-                            SizedBox(width: 63),
-                            ElevatedButton(
-                              clipBehavior: Clip.hardEdge,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.orange,
-                                foregroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  Database.pizza[index]["name"],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(width: 25),
+                                Icon(Icons.star, color: Colors.yellow, size: 18),
+                                Text(
+                                  Database.pizza[index]["rating"],
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                    
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  Database.pizza[index]["subname"],
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10,
+                                  bottom: 10,
+                                ),
+                                child: Text(
+                                  Database.pizza[index]["price"],
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
-
-                              onPressed: () {},
-                              child: Text(
-                                "+",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
+                              SizedBox(width: 63),
+                              ElevatedButton(
+                                clipBehavior: Clip.hardEdge,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.orange,
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25),
+                                    ),
+                                  ),
+                                ),
+                    
+                                onPressed: () {},
+                                child: Text(
+                                  "+",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -304,43 +323,141 @@ class SecondPage extends StatelessWidget {
                 itemCount: Database.pizzaRecom.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return Container(
-                    height: 185,
-                    width: 385,
-                    margin: EdgeInsets.only(right: 16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: const Color.fromARGB(255, 239, 239, 240),
-                    ),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(15),
-                              ),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  Database.pizzaRecom[index]["image"],
-                                ),
-                                fit: BoxFit.cover
-                              ),
+                  return Row(
+                    children: [
+                      Container(
+                        height: 185,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                          ),
+                          image: DecorationImage(
+                            image: AssetImage(
+                              Database.pizzaRecom[index]["image"],
                             ),
                           ),
                         ),
-                       Padding(padding: EdgeInsets.only(top: 5,
-                            bottom: 5,
-                            left: 5,)),
+                        child: Row(
+                          spacing: 10,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Spacer(),
+                            Icon(
+                              Icons.favorite_border,
+                              color: Colors.black,
+                              size: 25,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 185,
+                        width: 250,
+                        margin: EdgeInsets.only(right: 16),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.zero,
+                            topRight: Radius.circular(15),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(height:15,),
+                            Padding(
+                              padding: const EdgeInsets.only(left:10,top:10,bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    Database.pizzaRecom[index]["name"],
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Icon(
+                                    Icons.star,
+                                    size: 15,
+                                    color: Colors.yellowAccent,
+                                  ),
+                                  Text(
+                                    Database.pizzaRecom[index]["rating"],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10,bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    Database.pizzaRecom[index]["subname"],
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10,),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    Database.pizzaRecom[index]["price"],
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25,
+                                    ),
+                                  ),
+                                  
+                                ],
+                              ),
+                            ),
                             Row(
                               children: [
-                                
+                                Spacer(),
+                                ElevatedButton(
+                              clipBehavior: Clip.hardEdge,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.orange,
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                  ),
+                                ),
+                              ),
+
+                              onPressed: () {},
+                              child: Text(
+                                "+",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                               ],
                             )
-                        
-                      ],
-                    ),
+                            
+                             
+                          ],
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
